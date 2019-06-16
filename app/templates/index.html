@@ -2,7 +2,15 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
-    {% for post in posts %}
-    <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+    {% for product in products %}
+    <div class="card">
+            <img src="img_avatar.png" alt="Product" style="width:100%">
+            <div class="container">
+                <h4><b><a href="{{ url_for('products', title=product.title) }}">{{ product.title }} :</a></b></h4>
+                <p>Description: {{ product.body }}</p>
+                <p>Price: {{ product.price }}</p>
+                <hr>
+            </div>
+    </div>
     {% endfor %}
 {% endblock %}

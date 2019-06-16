@@ -3,27 +3,21 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.models import User, Products
+
 
 @app.route('/')
-@app.route('/index/')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'Jhon'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susam'},
-            'body': 'Good Job, very good job'
-        },
-        {
-            'author': {'username': 'Tom'},
-            'body': 'Super, i\'m fine!'
-        }
-    ]
-    return render_template("index.html", title='Home', posts=posts)
+    products = Products.query.all()
+    return render_template("index.html", products=products)
+
+
+@app.route('/products/<title>')
+@login_required
+def products(title):
+    product = Products.query.filter_by(title=title).first_or_404()
+    return render_template('product.html', product=product)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -63,3 +57,14 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    db.session.rollback()
+    return render_template('500.html'), 500
