@@ -1,24 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Sign in</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-                <span style="color:red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-                <span style="color:red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{form.remember_me.label }}</p>
-        <p>{{ form.submit }}</p>
-    </form>
+<div class="section">
+    <div class="form">
+        <h3 class="title">Sign in</h3>
+        <form class="form-card" action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="input-wrapper">
+                {{ form.username.label }}
+                {{ form.username(size=32) }}
+                {% for error in form.username.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}    
+            </div>
+
+            <div class="input-wrapper">
+                {{ form.password.label }}
+                {{ form.password(size=32) }}
+                {% for error in form.password.errors %}
+                    <span style="color:red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            
+            <div class="checkbox">
+                <label for="remember_me">
+                    {{ form.remember_me() }}
+                    <span>Remember me</span>
+            </label>
+        </div>
+
+            <div class="wrapper_position-center">
+                <button class="btn waves-effect waves-light login-button" type="submit" name="action">
+                    {{ form.submit }} <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock content %}

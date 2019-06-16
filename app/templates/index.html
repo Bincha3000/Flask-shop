@@ -1,16 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-    {% for product in products %}
-    <div class="card">
-            <img src="img_avatar.png" alt="Product" style="width:100%">
-            <div class="container">
-                <h4><b><a href="{{ url_for('products', title=product.title) }}">{{ product.title }} :</a></b></h4>
-                <p>Description: {{ product.body }}</p>
-                <p>Price: {{ product.price }}</p>
-                <hr>
+    <div class="container">
+        <h2>Hi, {{ current_user.username }}!</h2>
+
+        <div class="section-row">
+
+        {% for product in products %}
+            <div class="card">
+                <div class="card-image card-image_custom-size">
+                <img src="../static/images/phone.png">
+                    <span class="card-title">
+                        <a href="{{ url_for('products', title=product.title) }}">{{ product.title }}</a>
+                    </span>
+                </div>
+                <div class="card-content">
+                    <p>{{ product.body }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">{{ product.price }}</a>
+                </div>
             </div>
-    </div>
-    {% endfor %}
-{% endblock %}
+        {% endfor %}
+        </div>
+    {% endblock %}
+</div>
