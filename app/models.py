@@ -28,9 +28,9 @@ class Products(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64), index=True, unique=True)
+    slug = db.Column(db.String(64), index=True, unique=True)
     body = db.Column(db.String(140))
     price = db.Column(db.Numeric)
-
 
     def __repr__(self):
         return '<Product {}>'.format(self.title)

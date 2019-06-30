@@ -7,16 +7,16 @@ from app.models import User, Products
 
 
 @app.route('/')
-@login_required
+# @login_required
 def index():
     products = Products.query.all()
     return render_template("index.html", products=products)
 
 
-@app.route('/products/<title>')
-@login_required
-def products(title):
-    product = Products.query.filter_by(title=title).first_or_404()
+@app.route('/products/<slug>')
+# @login_required
+def products(slug):
+    product = Products.query.filter_by(slug=slug).first_or_404()
     return render_template('product.html', product=product)
 
 
