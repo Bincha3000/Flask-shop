@@ -31,5 +31,4 @@ flask run
 * flask_admin>=1.5.3
 
 ## Fronted by [Roman Tsvetkov](https://github.com/tsvetkovrb):
-![](https://pp.userapi.com/c855632/v855632038/6ef97/PkMxw7jsOjQ.jpg)
-![](https://media.giphy.com/media/13XW2MJE0XCoM0/giphy.gif)
+![](https://res.cloudinary.com/dtgupwmg6/image/upload/v1564644856/Screenshot_2019-06-17_at_02.10.31_pauzk1.png)
